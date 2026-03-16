@@ -1,0 +1,7 @@
+
+const Page = () => {
+    return (
+        <div>New Companion</div>
+    )
+}
+export default Page
