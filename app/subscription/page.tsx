@@ -1,8 +1,10 @@
+"use client"
 import React from 'react'
+import {PricingTable} from "@clerk/react";
 
 const Subscription = () => {
     return (
-        <div>Subscription</div>
+        <PricingTable/>
     )
 }
 export default Subscription

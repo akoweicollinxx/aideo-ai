@@ -3,14 +3,14 @@ import { useForm } from "react-hook-form"
 import {zodResolver} from "@hookform/resolvers/zod";
 import * as z from "zod"
 import { Button } from "@/components/ui/button"
-import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardFooter,
-    CardHeader,
-    CardTitle,
-} from "@/components/ui/card"
+// import {
+//     Card,
+//     CardContent,
+//     CardDescription,
+//     CardFooter,
+//     CardHeader,
+//     CardTitle,
+// } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 // import {Form} from "radix-ui";
 import {
@@ -24,6 +24,8 @@ import {
 import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@/components/ui/select";
 import {subjects} from "@/constants";
 import {Textarea} from "@/components/ui/textarea";
+import {createCompanion} from "@/lib/actions/companion.actions";
+import {redirect} from "next/navigation";
 
 
 
@@ -50,15 +52,14 @@ const CompanionForm = () => {
     })
 
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
-        // const companion = await createCompanion(values);
-        //
-        // if(companion) {
-        //     redirect(`/companions/${companion.id}`);
-        // } else {
-        //     console.log('Failed to create a companion');
-        //     redirect('/');
-        // }
-        console.log(values);
+        const companion = await createCompanion(values);
+
+        if(companion) {
+            redirect(`/companions/${companion.id}`);
+        } else {
+            console.log('Failed to create a companion');
+            redirect('/');
+        }
     }
 
     return (

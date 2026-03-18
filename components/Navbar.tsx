@@ -1,11 +1,15 @@
-import Link from "next/link";
-import Image from "next/image";
-// import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
-import NavItems from "@/components/NavItems";
+"use client"
+
+import Link from "next/link"
+import Image from "next/image"
+import { SignInButton, UserButton, useUser } from "@clerk/nextjs"
+import NavItems from "@/components/NavItems"
 
 const Navbar = () => {
+    const { isSignedIn } = useUser()
+
     return (
-        <nav className="flex items-center justify-between mx-auto w-full px-14 py-4 bg-background border-b max-sm:px-4">
+        <nav className="navbar">
             <Link href="/">
                 <div className="flex items-center gap-2.5 cursor-pointer">
                     <Image
@@ -16,16 +20,17 @@ const Navbar = () => {
                     />
                 </div>
             </Link>
+
             <div className="flex items-center gap-8">
                 <NavItems />
-                {/*<SignedOut>*/}
-                {/*    <SignInButton>*/}
-                {/*        <button className="btn-signin">Sign In</button>*/}
-                {/*    </SignInButton>*/}
-                {/*</SignedOut>*/}
-                {/*<SignedIn>*/}
-                {/*    <UserButton />*/}
-                {/*</SignedIn>*/}
+
+                {!isSignedIn ? (
+                    <SignInButton>
+                        <button className="btn-signin">Sign In</button>
+                    </SignInButton>
+                ) : (
+                    <UserButton />
+                )}
             </div>
         </nav>
     )
