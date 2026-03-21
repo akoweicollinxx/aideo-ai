@@ -1,10 +1,10 @@
-"use client"
-import React from 'react'
-import {PricingTable} from "@clerk/react";
+import {PricingTable} from "@clerk/nextjs";
 
 const Subscription = () => {
     return (
-        <PricingTable/>
+        <main>
+            <PricingTable />
+        </main>
     )
 }
 export default Subscription
